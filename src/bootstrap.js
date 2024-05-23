@@ -164,7 +164,7 @@ while ((escogerBebida != 'Colacao') && (escogerBebida != 'Cafe Cortado') && (esc
     precioTotal = precioDesayuno + precioBebida;
      comentarioAleatorio = comentarios[Math.floor(Math.random()*comentarios.length)].toUpperCase();
      alert(comentarioAleatorio);
-     alert("El precio total de tu pedido es:\n\n"+escogerDesayuno+" = "+precioDesayuno+ " Euros\n"+escogerBebida+" = "+ precioBebida+" Euros\n"+" Total A Pagar:  "+precioTotal+" Euros\n");       
+     alert("El precio total de tu pedido es:\n\n"+escogerDesayuno+" = "+precioDesayuno+ " Euros\n"+escogerBebida+" = "+ precioBebida+" Euros\n"+" Total A Pagar:  "+precioTotal.toFixed(2)+" Euros\n");       
 } 
 }catch (err) {
 alert(err.message);
@@ -178,7 +178,7 @@ var listaAlmuerzoPrincipal = '';
 var listaAlmuerzoSegundo = '';
 var listaAlmuerzoEntrante = '';
 
-for (var i = 0; i < almuerzo.length -3; i++){
+for (var i = 0; i < almuerzo.length -6; i++){
  listaAlmuerzoEntrante += `Entrante:  ${almuerzo[i].entrante}\nPrecio: ${almuerzo[i].precio} euros\n\n`;
 }
 for (var i = 3; i < almuerzo.length - 3; i++){  
@@ -241,6 +241,7 @@ while((adicionar != 'Si') && (adicionar != 'No')){
      adicion = adicionales.find(adicionales => adicionales.comida === escogerAdicional);
      precioAdicional = adicion.precio;
      precioTotal = precioEntrante + precioPrimero + precioSegundo + precioAdicional;
+     comentarioAleatorio = comentarios[Math.floor(Math.random()*comentarios.length)].toUpperCase();
      alert(comentarioAleatorio);
      
      alert("El precio total de tu pedido es:\n\n"+escogerEntrante+" = "+precioEntrante+ " Euros\n"+escogerPrimero+" = "+precioPrimero+ " Euros\n"+escogerSegundo+" = "+precioSegundo+ " Euros\n"+escogerAdicional+" = "+ precioAdicional+" Euros\n"+" Total A Pagar:  "+precioTotal.toFixed(2)+" Euros\n");       
@@ -313,7 +314,7 @@ while((adicionar != 'Si') && (adicionar != 'No')){
 }
  if(adicionar == 'Si'){
      var escogerAdicional = prompt("Escoge tu postre, puede ser: Tarta Queso, Flan o Helado \n\n "+" Menu\n\n  "+listaAdicionales).toLowerCase().replace(/\b[a-z]/g,c=>c.toUpperCase());
-   
+     
      while((escogerAdicional != 'Tarta Queso') && (escogerAdicional != 'Flan') && (escogerAdicional != 'Helado')){
        alert(escogerAdicional+ '  No es una opcion valida');
        escogerAdicional = prompt("Escoge tu postre, puede ser: Tarta Queso, Flan o Helado \n\n "+" Menu\n\n  "+listaAdicionales).toLowerCase().replace(/\b[a-z]/g,c=>c.toUpperCase());
@@ -321,6 +322,8 @@ while((adicionar != 'Si') && (adicionar != 'No')){
      adicion = adicionales.find(adicionales => adicionales.comida === escogerAdicional);
      precioAdicional = adicion.precio;
      precioTotal = precioEntranteCena + precioPrimeroCena + precioSegundoCena + precioAdicional;
+     comentarioAleatorio = comentarios[Math.floor(Math.random()*comentarios.length)].toUpperCase();
+     alert(comentarioAleatorio);
      
      alert("El precio total de tu pedido es:\n\n"+entranteCena+" = "+precioEntranteCena+ " Euros\n"+primeroCena+" = "+precioPrimeroCena+ " Euros\n"+segundoCena+" = "+precioSegundoCena+ " Euros\n"+escogerAdicional+" = "+ precioAdicional+" Euros\n"+" Total A Pagar:  "+precioTotal.toFixed(2)+" Euros\n");       
  }    
@@ -333,4 +336,5 @@ alert("El precio total de tu pedido es:\n\n"+entranteCena+" = "+precioEntranteCe
 catch (err) {
 console.error(err.message);
 }
+
 
