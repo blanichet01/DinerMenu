@@ -97,28 +97,9 @@ const comentarios = ["Que buena eleccion!!", "Buen provecho!!", "Que combinacion
 //Elemento aleatorio del array de comentarios
 const comentarioAleatorio = comentarios[Math.floor(Math.random()*comentarios.length)].toUpperCase();
 
-// Filtras horario de comidas libreria moment
 const hora = moment();
-elegirHora = prompt('Bienvenido a nuestro restaurante\n\n Elige una Hora por favor: formato HH:mm am/pm', hora.format("HH:mm a"));
-console.log(elegirHora);
+elegirHora = prompt('Bienvenido a nuestro restaurante\n\n Elige una Hora por favor: formato 24h HH:mm ', hora.format("HH:mm"));
 
-var mañana = moment('08:30 am', 'HH:mm a');
-var descanso = moment('11:59 am', 'HH:mm a');
-var tarde = moment('02:00 pm', 'HH:mm a');
-var comida = moment('06:00 pm', 'HH:mm a');
-var noche = moment('11:59 pm', 'HH:mm a');
-
-horaDesayuno = hora.isBetween(mañana , descanso);  //hora desayuno
-
-horaDescanso = hora.isBetween(descanso , tarde);  //hora descanso
-
-horaAlmuerzo = hora.isBetween(tarde , comida);   //hora almuerzo
-
-horaCena = hora.isBetween(comida , noche);    //hora cena
-
-if(elegirHora < "12:00"){
-console.log("asdfghjklñ");
-}
 //Carta Adicionales
 var listaAdicionales = '';
 var adicionar = null;
@@ -138,7 +119,8 @@ for (var i = 3; i < desayuno.length; i++){
 }
 //Condicionales hora Desayuno
 try{
-if(horaDesayuno == true){
+if((elegirHora >= "08:00") && (elegirHora < "13:00")){
+alert("Es hora de desayunar, tenemos deliciosas opciones");
   var escogerDesayuno = prompt("Escoge tu pintxo, puede ser: Pintxo Pollo, Tortilla Patata o Rollo Atun \n\n"+"Menu\n "+listaDesayuno).toLowerCase().replace(/\b[a-z]/g,c=>c.toUpperCase());   
  while ((escogerDesayuno != 'Pintxo Pollo') && (escogerDesayuno != 'Tortilla Patata') && (escogerDesayuno != 'Rollo Atun')){
    alert(escogerDesayuno+ "  No es una opcion valida");
@@ -161,9 +143,9 @@ while ((escogerBebida != 'Colacao') && (escogerBebida != 'Cafe Cortado') && (esc
 }catch (err) {
 alert(err.message);
 }
-
-if(horaDescanso == true){
-alert("No tenemos servicio en este horario abrimos de nuevo a las 2:00 pm");
+//Cerrado
+if((elegirHora >= "00:00") && (elegirHora < "08:00")){
+alert("No tenemos servicio en este horario, Gracias por elegirnos!!");
 }
 //Carta Almuerzo
 var listaAlmuerzoPrincipal = '';
@@ -179,7 +161,8 @@ for (var i = 3; i < almuerzo.length; i++){
 //Condicionales hora Almuerzo
 try{
 
-if(horaAlmuerzo == true){
+if((elegirHora >= "13:00") && (elegirHora < "19:00")){
+alert("Es hora de almorzar, tenemos deliciosas opciones");
 var escogerPrimero = prompt("Escoge tu plato principal, puede ser: Alubias, Sopa Fideos o Pasta \n\n "+" Menu Primer Plato\n\n  "+listaAlmuerzoPrincipal).toLowerCase().replace(/\b[a-z]/g,c=>c.toUpperCase());
 
 while((escogerPrimero != 'Alubias') && (escogerPrimero != 'Sopa Fideos') && (escogerPrimero != 'Pasta')){
@@ -193,8 +176,7 @@ var escogerSegundo = prompt("Escoge tu segundo plato, puede ser: Filete Merluza,
 
 while((escogerSegundo != 'Filete Merluza') && (escogerSegundo != 'Filete Cerdo') && (escogerSegundo != 'Pollo Frito')){
   alert(escogerSegundo+ "  No es una opcion valida");
-  escogerSegundo = prompt("Escoge tu segundo plato, puede ser: Filete Merluza, Filete Cerdo o Pollo Frito \n\n "+" Menu\n\n  "+listaAlmuerzoSegundo).toLowerCase().replace(/\b[a-z]/g,c=>c.toUpperCase()); 
-  
+  escogerSegundo = prompt("Escoge tu segundo plato, puede ser: Filete Merluza, Filete Cerdo o Pollo Frito \n\n "+" Menu\n\n  "+listaAlmuerzoSegundo).toLowerCase().replace(/\b[a-z]/g,c=>c.toUpperCase());    
 }
 var segundoPlato = almuerzo.find(almuerzo => almuerzo.segundo === escogerSegundo);
 var precioSegundo = segundoPlato.precio;  
@@ -223,7 +205,6 @@ else if (adicionar == 'No'){
  alert("El precio total de tu pedido es:\n\n"+escogerPrimero+" = "+precioPrimero+ " Euros\n"+escogerSegundo+" = "+precioSegundo+ " Euros\n Total A Pagar:  "+precioTotalSinPostre+" Euros\n");     
 } 
 }
-
 }catch (err) {
 alert(err.message);
 }
@@ -240,7 +221,8 @@ listaCenaSegundo += `Segundo plato:  ${cena[i].segundo}\nPrecio: ${cena[i].preci
 //Condicionales hora Cena
 try {
 
-if(horaCena == true){
+if((elegirHora >= "19:00") && (elegirHora < "23:59")){
+alert("Es hora de cenar, tenemos deliciosas opciones");
 var primeroCena = prompt("Escoge tu plato principal, puede ser: Ensalada, Guisantes o Verduras Salteadas \n\n "+" Menu Primer Plato\n\n"+listaCenaPrincipal).toLowerCase().replace(/\b[a-z]/g,c=>c.toUpperCase());
 
 while ((primeroCena != 'Ensalada') && (primeroCena != 'Guisantes') && (primeroCena != 'Verduras Salteadas')){
@@ -283,8 +265,7 @@ else if (adicionar == 'No'){
  precioTotalSinPostre = precioPrimeroCena + precioSegundoCena;
  alert("El precio total de tu pedido es:\n\n"+primeroCena+" = "+precioPrimeroCena+ " Euros\n"+segundoCena+" = "+precioSegundoCena+ " Euros\n" + "Total A Pagar:  "+precioTotalSinPostre+" Euros\n");     
 } 
-}
-
+} 
 }
 catch (err) {
 console.error(err.message);
