@@ -1,3 +1,4 @@
+import moment from "moment";
 const almuerzo = [
   {
     principal: "Alubias",
@@ -98,7 +99,7 @@ const comentarios = ["Que buena eleccion!!", "Buen provecho!!", "Que combinacion
 const comentarioAleatorio = comentarios[Math.floor(Math.random()*comentarios.length)].toUpperCase();
 
 const hora = moment();
-elegirHora = prompt('Bienvenido a nuestro restaurante\n\n Elige una Hora por favor: formato 24h HH:mm ', hora.format("HH:mm"));
+var elegirHora = prompt('Bienvenido a nuestro restaurante\n\n Elige una Hora por favor: formato 24h HH:mm ', hora.format("HH:mm"));
 
 //Carta Adicionales
 var listaAdicionales = '';
